@@ -1,5 +1,3 @@
-const crypto = require('crypto');
-
 /**
  * Your HTTP handling function, invoked with each request. This is an example
  * function that echoes its input to the caller, and returns an error if
@@ -27,7 +25,6 @@ const handle = async (context) => {
     var ssn_regex = new RegExp("^\\d{3}-\\d{2}-\\d{4}$");
     if (ssn_regex.test(context.query.SSN)) {
       context.body = {
-        request_id: crypto.randomUUID(),
         SSN: context.query.SSN,
         score: getRandomInt(min_score, max_score),
         history: getRandomInt(1, 30)
