@@ -1,5 +1,7 @@
 {
     "kogito.swf.automaticallyOpenDiagramEditorAlongsideTextEditor": "Open automatically",
+    "kogito.swf.runOnSave": "extension.kogito.swf.silentlyGenerateSvg",
+    "kogito.swf.specsStoragePath": "${fileDirname}/specs",
     "editor.wordWrap": "wordWrapColumn",
     "editor.wrappingIndent": "same",
     "editor.wordWrapColumn": 120

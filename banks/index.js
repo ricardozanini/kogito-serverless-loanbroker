@@ -17,11 +17,11 @@ const { CloudEvent, HTTP } = require('cloudevents');
  * See: https://github.com/knative-sandbox/kn-plugin-func/blob/main/docs/guides/nodejs.md#the-context-object
  */
 const handle = async (context, event) => {
-  context.log.info("context");
-  context.log.info(JSON.stringify(context, null, 2));
+  console.log("context");
+  console.log(JSON.stringify(context, null, 2));
 
-  context.log.info("event");
-  context.log.info(JSON.stringify(event, null, 2));
+  console.log("event");
+  console.log(JSON.stringify(event, null, 2));
 
   const requestId = context.cloudevent.kogitoprocinstanceid;
   const bankId = process.env.BANK_ID;
@@ -44,7 +44,7 @@ function calcRate(amount, term, score, history) {
 }
 
 bankQuote = (quoteRequest, bankId) => {
-  const rate = calcRate(quoteRequest.Amount, quoteRequest.Term, quoteRequest.Credit.Score, quoteRequest.Credit.History);
+  const rate = calcRate(quoteRequest.amount, quoteRequest.term, quoteRequest.credit.score, quoteRequest.credit.history);
 
   if (rate) {
     console.log('%s offering Loan at %f', bankId, rate);

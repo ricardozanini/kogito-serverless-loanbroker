@@ -4,7 +4,7 @@ const func = require('..').handle;
 const test = require('tape');
 const { CloudEvent } = require('cloudevents');
 
-const data = { "Amount": 300000, "Term": 30, "Credit": { "Score": 700, "History": 15 } }
+const data = { "amount": 300000, "term": 30, "credit": { "score": 700, "history": 15 } }
 
 // A valid event includes id, type and source at a minimum.
 const cloudevent = new CloudEvent({
