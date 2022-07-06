@@ -29,12 +29,14 @@ const handle = async (context, event) => {
 
   const response = bankQuote(context.cloudevent.data, bankId);
 
-  return HTTP.binary(new CloudEvent({
-    source: "/kogito/serverless/loanbroker/bank/" + bankId,
-    type: eventType,
-    data: response,
-    extensions: { requestid: requestId }
-  }));;
+  if (response != null) {
+    return HTTP.binary(new CloudEvent({
+      source: "/kogito/serverless/loanbroker/bank/" + bankId,
+      type: eventType,
+      data: response,
+      extensions: { requestid: requestId }
+    }));;
+  }
 }
 
 function calcRate(amount, term, score, history) {
@@ -51,7 +53,7 @@ bankQuote = (quoteRequest, bankId) => {
     return { "rate": rate, "bankId": bankId };
   } else {
     console.log('%s rejecting Loan', bankId);
-    return {};
+    return null;
   }
 }
 

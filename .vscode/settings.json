@@ -4,5 +4,6 @@
     "kogito.swf.specsStoragePath": "${fileDirname}/specs",
     "editor.wordWrap": "wordWrapColumn",
     "editor.wrappingIndent": "same",
-    "editor.wordWrapColumn": 120
+    "editor.wordWrapColumn": 120,
+    "java.configuration.updateBuildConfiguration": "automatic"
 }

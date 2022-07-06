@@ -1,0 +1,12 @@
+{
+    "services": [
+        {
+            "type": "event",
+            "name": "default",
+            "metadata": {
+                "knative.event.type": "kogito.serverless.loanbroker.bank.offer",
+                "camel.endpoint.kind": "sink"
+            }
+        }
+    ]
+}
