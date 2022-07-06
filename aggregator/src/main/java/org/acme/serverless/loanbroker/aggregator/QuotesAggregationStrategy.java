@@ -11,7 +11,7 @@ public class QuotesAggregationStrategy implements AggregationStrategy {
     /**
      * Everything but Kogito and Camel
      */
-    private static String REMOVE_HEADERS_PATTERN = "^(?!ce-kogito).*$";
+    private static String REMOVE_HEADERS_PATTERN = "^(?!ce-kogito|Camel).*$";
 
     @Override
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
