@@ -1,9 +1,9 @@
 package org.acme.serverless.loanbroker.aggregator;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
-import org.apache.camel.builder.AggregationStrategies;
 import org.apache.camel.builder.endpoint.EndpointRouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
 
@@ -17,9 +17,11 @@ import org.apache.camel.model.rest.RestBindingMode;
 @ApplicationScoped
 public class HttpAggregatorRoute extends EndpointRouteBuilder {
 
+    @Inject
+    QuotesRespositoryProcessor quotesRespository;
+
     @Override
     public void configure() throws Exception {
-
         restConfiguration().bindingMode(RestBindingMode.json);
         rest("/test")
                 .post()
@@ -27,9 +29,10 @@ public class HttpAggregatorRoute extends EndpointRouteBuilder {
                 .to("direct:aggregator");
 
         from("direct:aggregator")
-        .aggregate(header("ce-kogitoprocinstanceid"), new QuotesAggregationStrategy())
-            .completionInterval(3000)
-        .to("log:info");
+                .aggregate(header(IntegrationConstants.KOGITO_FLOW_ID_HEADER), new QuotesAggregationStrategy())
+                .completionInterval(3000)
+                .process(quotesRespository)
+                .to("mock:aggregated.quotes");
     }
 
 }

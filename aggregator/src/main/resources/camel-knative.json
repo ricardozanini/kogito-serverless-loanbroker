@@ -2,10 +2,10 @@
     "services": [
         {
             "type": "event",
-            "name": "default",
+            "name": "quotes-agreggator",
             "metadata": {
                 "knative.event.type": "kogito.serverless.loanbroker.bank.offer",
-                "camel.endpoint.kind": "sink"
+                "camel.endpoint.kind": "source"
             }
         }
     ]

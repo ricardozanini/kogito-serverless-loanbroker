@@ -27,10 +27,9 @@ public class KnativeEventingAggregatorRoute extends RouteBuilder {
 
     @PostConstruct
     public void init() {
-        // TODO: figure out why do we need this since we can configure everything via
-        // properties directly in the endpoint
-        //final KnativeComponent component = camelContext.getComponent("knative", KnativeComponent.class);
-        //component.setEnvironmentPath("classpath:camel-knative.json");
+        final KnativeComponent component = camelContext.getComponent("knative", KnativeComponent.class);
+        component.setEnvironmentPath("classpath:camel-knative.json");
+        component.init();
     }
 
     @ConfigProperty(name = "org.acme.serverless.loanbroker.aggregator.broker", defaultValue = "default")
@@ -38,9 +37,7 @@ public class KnativeEventingAggregatorRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        /*
-        from("knative:event/" + brokerName).to("log:info");
-         */
+        from("knative:event/quotes-agreggator").to("log:info");
     }
 
 }
