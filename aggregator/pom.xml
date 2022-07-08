@@ -54,12 +54,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-knative</artifactId>
-      <version>${version.org.apache.camel}</version>
-    </dependency>
-
-    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-jackson</artifactId>
     </dependency>
