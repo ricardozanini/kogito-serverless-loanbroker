@@ -39,6 +39,10 @@ public class InMemoryQuotesRepositoryProcessor implements QuotesRespositoryProce
                     return quotes;
                 });
                 LOGGER.info("Aggregation for workflow instance {} ended with {} quotes", instanceId, quoteCount);
+            } else {
+                throw new IllegalStateException(
+                        String.format("Received an exchange with empty instance id. '%s' header not present",
+                                IntegrationConstants.KOGITO_FLOW_ID_HEADER));
             }
 
         }

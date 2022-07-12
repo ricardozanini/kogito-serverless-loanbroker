@@ -1,4 +1,4 @@
-package org.acme.serverless.loanbroker.aggregator;
+package org.acme.serverless.loanbroker.aggregator.resources;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.acme.serverless.loanbroker.aggregator.QuotesRespositoryProcessor;
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;

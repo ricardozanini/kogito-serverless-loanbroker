@@ -14,8 +14,8 @@
     <quarkus.platform.version>2.10.1.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <!-- Camel Knative component is not in quarkus pom -->
-    <version.org.apache.camel>3.17.0</version.org.apache.camel>
+
+    <version.io.cloudevents>2.3.0</version.io.cloudevents>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -38,19 +38,18 @@
   <dependencies>
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
-      <artifactId>camel-quarkus-log</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.quarkus</groupId>
-      <artifactId>camel-quarkus-jackson</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.quarkus</groupId>
-      <artifactId>camel-quarkus-rest</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-direct</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-http-restful-ws</artifactId>
+      <version>${version.io.cloudevents}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-json-jackson</artifactId>
+      <version>${version.io.cloudevents}</version>
     </dependency>
 
     <dependency>

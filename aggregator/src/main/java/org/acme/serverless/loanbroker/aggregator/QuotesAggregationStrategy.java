@@ -9,13 +9,9 @@ import org.apache.camel.Exchange;
 
 public class QuotesAggregationStrategy implements AggregationStrategy {
     /**
-     * Everything but Kogito and Camel
-     */
-    private static String REMOVE_HEADERS_PATTERN = "^(?!ce-|Camel).*$";
-    /**
      * Header key to the count of aggregated quotes
      */
-    public static String HEADER_QUOTES_COUNT = "ce-quotes";
+    public static String HEADER_QUOTES_COUNT = "quotes";
 
     @Override
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
@@ -28,7 +24,6 @@ public class QuotesAggregationStrategy implements AggregationStrategy {
             final List<BankQuote> quotes = new ArrayList<>();
             quotes.add(quote);
             newExchange.getIn().setBody(quotes);
-            newExchange.getIn().removeHeaders(REMOVE_HEADERS_PATTERN);
             newExchange.getIn().setHeader(HEADER_QUOTES_COUNT, quotes.size());
             return newExchange;
         }
@@ -36,7 +31,6 @@ public class QuotesAggregationStrategy implements AggregationStrategy {
         final List<BankQuote> quotes = (List<BankQuote>) oldExchange.getIn().getBody();
         quotes.add(quote);
         oldExchange.getIn().setBody(quotes);
-        oldExchange.getIn().removeHeaders(REMOVE_HEADERS_PATTERN);
         oldExchange.getIn().setHeader(HEADER_QUOTES_COUNT, quotes.size());
         return oldExchange;
     }

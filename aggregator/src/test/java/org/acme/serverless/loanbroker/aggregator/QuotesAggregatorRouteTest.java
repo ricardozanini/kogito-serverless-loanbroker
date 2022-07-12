@@ -1,8 +1,10 @@
 package org.acme.serverless.loanbroker.aggregator;
 
+import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.ws.rs.core.MediaType;
 
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
 import org.apache.camel.CamelContext;
@@ -15,11 +17,16 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.cloudevents.CloudEvent;
+import io.cloudevents.core.builder.CloudEventBuilder;
+import io.cloudevents.core.data.PojoCloudEventData;
+import io.cloudevents.core.provider.EventFormatProvider;
+import io.cloudevents.jackson.JsonFormat;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 
 @QuarkusTest
-public class HttpAggregatorRouteTest {
+public class QuotesAggregatorRouteTest {
 
     static {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
@@ -102,12 +109,22 @@ public class HttpAggregatorRouteTest {
 
     private void postMessageAndExpectSuccess(final BankQuote bankQuote, final String workflowInstanceId)
             throws JsonProcessingException {
+
+        final CloudEvent ce = CloudEventBuilder.v1()
+                .withId("123456")
+                .withType("kogito.serverless.loanbroker.bank.offer")
+                .withSource(URI.create("/local/tests"))
+                .withDataContentType(MediaType.APPLICATION_JSON)
+                .withData(PojoCloudEventData.wrap(bankQuote, objectMapper::writeValueAsBytes))
+                .withExtension("kogitoprocinstanceid", workflowInstanceId)
+                .build();
+
         RestAssured.given()
-                .header("Content-Type", "application/json")
-                .header(IntegrationConstants.KOGITO_FLOW_ID_HEADER, workflowInstanceId)
-                .body(objectMapper.writeValueAsString(bankQuote))
+                .header("Content-Type", "application/cloudevents+json")
+                // see: https://cloudevents.github.io/sdk-java/json-jackson.html#using-the-json-event-format
+                .body(EventFormatProvider.getInstance().resolveFormat(JsonFormat.CONTENT_TYPE).serialize(ce))
                 .when()
-                .post("/test")
+                .post("/")
                 .then()
                 .statusCode(200);
     }
