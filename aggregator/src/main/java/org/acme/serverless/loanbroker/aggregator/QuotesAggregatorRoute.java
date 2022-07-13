@@ -1,8 +1,5 @@
 package org.acme.serverless.loanbroker.aggregator;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
