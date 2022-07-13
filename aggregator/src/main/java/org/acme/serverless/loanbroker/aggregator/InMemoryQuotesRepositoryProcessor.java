@@ -16,13 +16,14 @@ import org.slf4j.LoggerFactory;
  * Saves every aggregated exchange in memory for later retrival.
  */
 @ApplicationScoped
-public class InMemoryQuotesRepositoryProcessor implements QuotesRespositoryProcessor {
+public class InMemoryQuotesRepositoryProcessor implements QuotesRepositoryProcessor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InMemoryQuotesRepositoryProcessor.class);
 
     private final Map<String, List<BankQuote>> quotesMap = new ConcurrentHashMap<>();
 
     @Override
+    @SuppressWarnings("unchecked")
     public void process(Exchange exchange) throws Exception {
         if (exchange != null) {
             final String instanceId = (String) exchange.getIn().getHeader(IntegrationConstants.KOGITO_FLOW_ID_HEADER);

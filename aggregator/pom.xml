@@ -16,6 +16,7 @@
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
 
     <version.io.cloudevents>2.3.0</version.io.cloudevents>
+    <version.com.github.tomakehurst>2.33.2</version.com.github.tomakehurst>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -39,6 +40,10 @@
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-direct</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel.quarkus</groupId>
+      <artifactId>camel-quarkus-http</artifactId>
     </dependency>
 
     <dependency>
@@ -81,6 +86,19 @@
       <artifactId>rest-assured</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock-jre8</artifactId>
+      <version>${version.com.github.tomakehurst}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>1.17.3</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

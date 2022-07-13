@@ -1,10 +1,13 @@
 package org.acme.serverless.loanbroker.aggregator;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.acme.serverless.loanbroker.aggregator.model.AggregationResponse;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.endpoint.EndpointRouteBuilder;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
@@ -19,10 +22,13 @@ import io.cloudevents.CloudEvent;
 public class QuotesAggregatorRoute extends EndpointRouteBuilder {
 
         @Inject
-        QuotesRespositoryProcessor quotesRespository;
+        QuotesRepositoryProcessor quotesRepository;
 
         @Inject
-        QuotesToCloudEventsConverter quotesToCloudEventsConverter;
+        CloudEventsConverter cloudEventsConverter;
+
+        @Inject
+        CloudEventDataFormat cloudEventDataFormat;
 
         @ConfigProperty(name = "org.acme.serverless.loanbroker.aggregator.replyTo")
         String replyTo;
@@ -32,19 +38,20 @@ public class QuotesAggregatorRoute extends EndpointRouteBuilder {
                 // @formatter:off
                 getContext()
                         .getTypeConverterRegistry()
-                        .addTypeConverter(CloudEvent.class, ArrayList.class,
-                        quotesToCloudEventsConverter);
+                        .addTypeConverter(CloudEvent.class, AggregationResponse.class,
+                        cloudEventsConverter);
                 
                 from("direct:aggregator")
                         .routeId("quotes-aggregator")
                         .aggregate(header(IntegrationConstants.KOGITO_FLOW_ID_HEADER), new QuotesAggregationStrategy())
                         .completionInterval(3000)
-                        .process(quotesRespository)
+                        .process(quotesRepository)
+                        .setBody(AggregationResponse::fromExchange)
                         .convertBodyTo(CloudEvent.class)
-                        // FIXME: replace with adviceWith
-                        .to("mock:aggregated.quotes");
-                        // TODO: add an integration test with WireMock to verify this event
-                        //.toD(replyTo + "?copyHeaders=false");
+                        .marshal(cloudEventDataFormat)
+                        .setHeader(Exchange.CONTENT_TYPE, constant("application/cloudevents+json"))
+                        //.to("mock:aggregated.quotes");
+                        .to(replyTo + "?copyHeaders=false");
                 // @formatter:on
         }
 

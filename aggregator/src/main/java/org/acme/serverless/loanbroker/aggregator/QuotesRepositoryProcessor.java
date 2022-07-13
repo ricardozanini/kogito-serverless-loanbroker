@@ -11,7 +11,7 @@ import org.apache.camel.Processor;
  * Should be split into Processor and Repository in real life implementations to
  * keep the separation of concerns.
  */
-public interface QuotesRespositoryProcessor extends Processor {
+public interface QuotesRepositoryProcessor extends Processor {
 
     List<BankQuote> fetchQuotesByInstanceId(final String instanceId);
 

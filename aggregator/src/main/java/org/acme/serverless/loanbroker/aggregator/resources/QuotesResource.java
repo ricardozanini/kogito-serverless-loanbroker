@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.acme.serverless.loanbroker.aggregator.QuotesRespositoryProcessor;
+import org.acme.serverless.loanbroker.aggregator.QuotesRepositoryProcessor;
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -29,7 +29,7 @@ public class QuotesResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuotesResource.class);
 
     @Inject
-    QuotesRespositoryProcessor quotesRepository;
+    QuotesRepositoryProcessor quotesRepository;
 
     @Path("/{id}")
     @GET

@@ -1,7 +1,6 @@
 package org.acme.serverless.loanbroker.aggregator;
 
 import java.net.URI;
-import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -19,7 +18,7 @@ import io.cloudevents.core.builder.CloudEventBuilder;
 import io.cloudevents.core.data.PojoCloudEventData;
 
 @Singleton
-public class QuotesToCloudEventsConverter extends TypeConverterSupport {
+public class CloudEventsConverter extends TypeConverterSupport {
 
     @Inject
     ObjectMapper mapper;
@@ -27,11 +26,11 @@ public class QuotesToCloudEventsConverter extends TypeConverterSupport {
     @Override
     @SuppressWarnings("unchecked")
     public <T> T convertTo(Class<T> type, Exchange exchange, Object value) throws TypeConversionException {
-        if (CloudEvent.class.equals(type) && value instanceof List) {
+        if (CloudEvent.class.equals(type)) {
+            // In real-life use case, this can be a Any Object -> CloudEvents conversion.
+            // One can keep the specific CE attributes in the Exchange header or attributes.
             final CloudEvent event = CloudEventBuilder.v1()
                     .withId(UUID.randomUUID().toString())
-                    .withExtension(IntegrationConstants.KOGITO_FLOW_ID_HEADER,
-                            exchange.getIn().getHeader(IntegrationConstants.KOGITO_FLOW_ID_HEADER).toString())
                     .withType("kogito.serverless.loanbroker.aggregated.quotes.response")
                     .withSource(URI.create("/kogito/serverless/loanbroker/aggregator"))
                     .withDataContentType(MediaType.APPLICATION_JSON)

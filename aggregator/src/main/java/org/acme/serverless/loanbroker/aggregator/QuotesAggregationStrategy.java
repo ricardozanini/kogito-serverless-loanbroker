@@ -14,6 +14,7 @@ public class QuotesAggregationStrategy implements AggregationStrategy {
     public static String HEADER_QUOTES_COUNT = "quotes";
 
     @Override
+    @SuppressWarnings("unchecked")
     public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
         final BankQuote quote = (BankQuote) newExchange.getIn().getBody();
         if (quote.getBankId() == null || quote.getBankId().isEmpty()) {
