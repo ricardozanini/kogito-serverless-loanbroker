@@ -47,7 +47,6 @@ public class QuotesAggregatorRoute extends EndpointRouteBuilder {
                         .convertBodyTo(CloudEvent.class)
                         .marshal(cloudEventDataFormat)
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/cloudevents+json"))
-                        //.to("mock:aggregated.quotes");
                         .to(replyTo + "?copyHeaders=false");
                 // @formatter:on
         }

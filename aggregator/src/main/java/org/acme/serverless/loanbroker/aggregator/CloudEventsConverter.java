@@ -35,6 +35,8 @@ public class CloudEventsConverter extends TypeConverterSupport {
                     .withSource(URI.create("/kogito/serverless/loanbroker/aggregator"))
                     .withDataContentType(MediaType.APPLICATION_JSON)
                     .withData(PojoCloudEventData.wrap(value, mapper::writeValueAsBytes))
+                    .withExtension(IntegrationConstants.KOGITO_FLOW_ID_HEADER,
+                            exchange.getIn().getHeader(IntegrationConstants.KOGITO_FLOW_ID_HEADER).toString())
                     .build();
             return (T) event;
         }
