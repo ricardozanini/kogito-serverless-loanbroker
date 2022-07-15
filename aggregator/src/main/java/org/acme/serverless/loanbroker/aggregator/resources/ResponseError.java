@@ -49,23 +49,30 @@ public class ResponseError implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         ResponseError other = (ResponseError) obj;
         if (cause == null) {
-            if (other.cause != null)
+            if (other.cause != null) {
                 return false;
-        } else if (!cause.equals(other.cause))
+            }
+        } else if (!cause.equals(other.cause)) {
             return false;
+        }
         if (message == null) {
-            if (other.message != null)
+            if (other.message != null) {
                 return false;
-        } else if (!message.equals(other.message))
+            }
+        } else if (!message.equals(other.message)) {
             return false;
+        }
         return true;
     }
 

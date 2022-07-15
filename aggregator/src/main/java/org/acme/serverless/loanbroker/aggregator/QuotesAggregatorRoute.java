@@ -18,21 +18,20 @@ import io.cloudevents.CloudEvent;
 @ApplicationScoped
 public class QuotesAggregatorRoute extends EndpointRouteBuilder {
 
-        @Inject
-        QuotesRepositoryProcessor quotesRepository;
+    @Inject
+    QuotesRepositoryProcessor quotesRepository;
 
-        @Inject
-        CloudEventsConverter cloudEventsConverter;
+    @Inject
+    CloudEventsConverter cloudEventsConverter;
 
-        @Inject
-        CloudEventDataFormat cloudEventDataFormat;
+    @Inject
+    CloudEventDataFormat cloudEventDataFormat;
 
-        @ConfigProperty(name = "org.acme.serverless.loanbroker.aggregator.replyTo")
-        String replyTo;
+    @ConfigProperty(name = "org.acme.serverless.loanbroker.aggregator.replyTo")
+    String replyTo;
 
-        @Override
-        public void configure() throws Exception {
-                // @formatter:off
+    @Override
+    public void configure() {
                 getContext()
                         .getTypeConverterRegistry()
                         .addTypeConverter(CloudEvent.class, AggregationResponse.class,
@@ -48,7 +47,6 @@ public class QuotesAggregatorRoute extends EndpointRouteBuilder {
                         .marshal(cloudEventDataFormat)
                         .setHeader(Exchange.CONTENT_TYPE, constant("application/cloudevents+json"))
                         .to(replyTo + "?copyHeaders=false");
-                // @formatter:on
-        }
+    }
 
 }

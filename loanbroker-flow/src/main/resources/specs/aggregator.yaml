@@ -7,7 +7,7 @@ paths:
   /:
     post:
       tags:
-      - Quotes Cloud Events Resource
+        - Quotes Cloud Events Resource
       operationId: consumeQuoteEvent
       requestBody:
         content:
@@ -20,22 +20,23 @@ paths:
   /quotes/{id}:
     get:
       tags:
-      - Quotes Resource
+        - Quotes Resource
       operationId: fetchQuotesByInstance
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: success
           content:
             application/json:
               schema:
-                allOf:
-                - $ref: '#/components/schemas/BankQuote'
+                type: array
+                items:
+                  $ref: '#/components/schemas/BankQuote'
 components:
   schemas:
     BankQuote:
@@ -84,6 +85,6 @@ components:
       type: object
     SpecVersion:
       enum:
-      - V03
-      - V1
+        - V03
+        - V1
       type: string

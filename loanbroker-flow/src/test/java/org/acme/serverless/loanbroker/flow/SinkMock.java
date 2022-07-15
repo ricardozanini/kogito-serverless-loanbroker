@@ -1,8 +1,5 @@
 package org.acme.serverless.loanbroker.flow;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.post;
-
 import java.util.Collections;
 import java.util.Map;
 
@@ -10,6 +7,9 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.post;
 
 /**
  * Mocks the Knative Sink service. Every event produced by the workflow will be
@@ -40,7 +40,7 @@ public class SinkMock implements QuarkusTestResourceLifecycleManager {
 
     @Override
     public void inject(Object testInstance) {
-        ((LoanBrokerFlowIT) testInstance).sinkServer = wireMockServer;
+        ((LoanBrokerFlowTest) testInstance).sinkServer = wireMockServer;
     }
 
 }

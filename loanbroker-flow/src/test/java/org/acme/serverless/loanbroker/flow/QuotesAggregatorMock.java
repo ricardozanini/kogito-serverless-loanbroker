@@ -1,16 +1,18 @@
 package org.acme.serverless.loanbroker.flow;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
-
 import java.util.Collections;
 import java.util.Map;
+
+import javax.ws.rs.core.MediaType;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
 /**
  * Mocks the aggregator service that must return a list of quotes
@@ -23,10 +25,19 @@ public class QuotesAggregatorMock implements QuarkusTestResourceLifecycleManager
     public Map<String, String> start() {
         wireMockServer = new WireMockServer(WireMockConfiguration.wireMockConfig().dynamicPort());
         wireMockServer.start();
-        wireMockServer.stubFor(get(urlPathMatching("/quotes/*"))
+        wireMockServer.stubFor(get(urlPathMatching("\\/quotes\\/.*"))
                 .willReturn(aResponse()
-                        .withBody(
-                                "{[{\"rate\":5.8170958335644,\"bankId\":\"BankUniversal\"}, { \"rate\":7.206690977561289,\"bankId\":\"BankPawnshop\"}]}")
+                        .withHeader("Content-Type", MediaType.APPLICATION_JSON)
+                        .withBody("["
+                                + "  {"
+                                + "    \"rate\":5.8170958335644,"
+                                + "    \"bankId\":\"BankUniversal\""
+                                + "  },"
+                                + "  {"
+                                + "    \"rate\":7.206690977561289,"
+                                + "    \"bankId\":\"BankPawnshop\""
+                                + "  }"
+                                + "]")
                         .withStatus(200)));
 
         // inject the endpoint to the generated RESTClient Stub
@@ -43,7 +54,7 @@ public class QuotesAggregatorMock implements QuarkusTestResourceLifecycleManager
 
     @Override
     public void inject(Object testInstance) {
-        ((LoanBrokerFlowIT) testInstance).aggregatorServer = wireMockServer;
+        ((LoanBrokerFlowTest) testInstance).aggregatorServer = wireMockServer;
     }
 
 }

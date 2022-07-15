@@ -1,1 +1,125 @@
-<svg id="mermaid-1657745054600" width="100%" xmlns="http://www.w3.org/2000/svg" class="statediagram" height="614.5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"><g id="viewport-20220713204414622" class="svg-pan-zoom_viewport" transform="matrix(1.000813669650122,0,0,1.000813669650122,134.64324399918635,0)" style="transform: matrix(1.00081, 0, 0, 1.00081, 134.643, 0);"><style>#mermaid-1657745054600 {font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-1657745054600 .error-icon{fill:#552222;}#mermaid-1657745054600 .error-text{fill:#552222;stroke:#552222;}#mermaid-1657745054600 .edge-thickness-normal{stroke-width:2px;}#mermaid-1657745054600 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1657745054600 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1657745054600 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1657745054600 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1657745054600 .marker{fill:#333333;stroke:#333333;}#mermaid-1657745054600 .marker.cross{stroke:#333333;}#mermaid-1657745054600 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1657745054600 defs #statediagram-barbEnd{fill:#333333;stroke:#333333;}#mermaid-1657745054600 g.stateGroup text{fill:#9370DB;stroke:none;font-size:10px;}#mermaid-1657745054600 g.stateGroup text{fill:#333;stroke:none;font-size:10px;}#mermaid-1657745054600 g.stateGroup .state-title{font-weight:bolder;fill:#131300;}#mermaid-1657745054600 g.stateGroup rect{fill:#ECECFF;stroke:#9370DB;}#mermaid-1657745054600 g.stateGroup line{stroke:#333333;stroke-width:1;}#mermaid-1657745054600 .transition{stroke:#333333;stroke-width:1;fill:none;}#mermaid-1657745054600 .stateGroup .composit{fill:white;border-bottom:1px;}#mermaid-1657745054600 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#mermaid-1657745054600 .state-note{stroke:#aaaa33;fill:#fff5ad;}#mermaid-1657745054600 .state-note text{fill:black;stroke:none;font-size:10px;}#mermaid-1657745054600 .stateLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5;}#mermaid-1657745054600 .edgeLabel .label rect{fill:#ECECFF;opacity:0.5;}#mermaid-1657745054600 .edgeLabel .label text{fill:#333;}#mermaid-1657745054600 .label div .edgeLabel{color:#333;}#mermaid-1657745054600 .stateLabel text{fill:#131300;font-size:10px;font-weight:bold;}#mermaid-1657745054600 .node circle.state-start{fill:#333333;stroke:#333333;}#mermaid-1657745054600 .node .fork-join{fill:#333333;stroke:#333333;}#mermaid-1657745054600 .node circle.state-end{fill:#9370DB;stroke:white;stroke-width:1.5;}#mermaid-1657745054600 .end-state-inner{fill:white;stroke-width:1.5;}#mermaid-1657745054600 .node rect{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657745054600 .node polygon{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657745054600 #statediagram-barbEnd{fill:#333333;}#mermaid-1657745054600 .statediagram-cluster rect{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657745054600 .cluster-label,#mermaid-1657745054600 .nodeLabel{color:#131300;}#mermaid-1657745054600 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#mermaid-1657745054600 .statediagram-state .divider{stroke:#9370DB;}#mermaid-1657745054600 .statediagram-state .title-state{rx:5px;ry:5px;}#mermaid-1657745054600 .statediagram-cluster.statediagram-cluster .inner{fill:white;}#mermaid-1657745054600 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f0f0f0;}#mermaid-1657745054600 .statediagram-cluster .inner{rx:0;ry:0;}#mermaid-1657745054600 .statediagram-state rect.basic{rx:5px;ry:5px;}#mermaid-1657745054600 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f0f0f0;}#mermaid-1657745054600 .note-edge{stroke-dasharray:5;}#mermaid-1657745054600 .statediagram-note rect{fill:#fff5ad;stroke:#aaaa33;stroke-width:1px;rx:0;ry:0;}#mermaid-1657745054600 .statediagram-note rect{fill:#fff5ad;stroke:#aaaa33;stroke-width:1px;rx:0;ry:0;}#mermaid-1657745054600 .statediagram-note text{fill:black;}#mermaid-1657745054600 .statediagram-note .nodeLabel{color:black;}#mermaid-1657745054600 .statediagram .edgeLabel{color:red;}#mermaid-1657745054600 #dependencyStart,#mermaid-1657745054600 #dependencyEnd{fill:#333333;stroke:#333333;stroke-width:1;}#mermaid-1657745054600 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style><g><defs><marker id="statediagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="strokeWidth" orient="auto"><path d="M 19,7 L9,13 L14,7 L9,1 Z"></path></marker><style id="svg-pan-zoom-controls-styles" type="text/css">.svg-pan-zoom-control { cursor: pointer; fill: black; fill-opacity: 0.333; } .svg-pan-zoom-control:hover { fill-opacity: 0.8; } .svg-pan-zoom-control-background { fill: white; fill-opacity: 0.5; } .svg-pan-zoom-control-background { fill-opacity: 0.8; }</style></defs><g class="root"><g class="clusters"></g><g class="edgePaths"><path d="M179.2109375,22L179.2109375,26.166666666666668C179.2109375,30.333333333333332,179.2109375,38.666666666666664,179.2109375,47C179.2109375,55.333333333333336,179.2109375,63.666666666666664,179.2109375,67.83333333333333L179.2109375,72" id="edge100" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path><path d="M179.2109375,195.5L179.2109375,199.66666666666666C179.2109375,203.83333333333334,179.2109375,212.16666666666666,179.2109375,220.5C179.2109375,228.83333333333334,179.2109375,237.16666666666666,179.2109375,241.33333333333334L179.2109375,245.5" id="edge101" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path><path d="M179.2109375,345L179.2109375,349.1666666666667C179.2109375,353.3333333333333,179.2109375,361.6666666666667,179.2109375,370C179.2109375,378.3333333333333,179.2109375,386.6666666666667,179.2109375,390.8333333333333L179.2109375,395" id="edge102" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path><path d="M179.2109375,518.5L179.2109375,524.6666666666666C179.2109375,530.8333333333334,179.2109375,543.1666666666666,179.2109375,555.5C179.2109375,567.8333333333334,179.2109375,580.1666666666666,179.2109375,586.3333333333334L179.2109375,592.5" id="edge103" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g class="label" transform="translate(0, 0)"><rect rx="0" ry="0" width="0" height="0"></rect><foreignObject width="0" height="0"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel" transform="translate(179.2109375, 555.5)"><g class="label" transform="translate(-171.2109375, -12)"><rect rx="0" ry="0" width="342.421875" height="24"></rect><foreignObject width="342.421875" height="24"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="edgeLabel">Produced event = [loanBrokerRequestedQuotes]</span></div></foreignObject></g></g></g><g class="nodes"><g class="node statediagram-state" id="state-GetCreditScore-101" transform="translate(179.2109375, 133.75)"><rect class="outer title-state" x="-98.65625" y="-61.75" width="197.3125" height="123.5"></rect><line class="divider" x1="-98.65625" x2="98.65625" y1="-30.25" y2="-30.25"></line><g class="label" transform="translate(-91.15625, -58.75)"><foreignObject width="109.375" height="24" transform="translate( 36.46875, 0)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">GetCreditScore</span></div></foreignObject><foreignObject width="182.3125" height="72" transform="translate( 0, 36.5)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">type = Operation State<br/>Action mode = sequential<br/>Num. of actions = 1</span></div></foreignObject></g></g><g class="node default" id="state-root_start-100" transform="translate(179.2109375, 15)"><circle class="state-start" r="7" width="14" height="14"></circle></g><g class="node statediagram-state" id="state-RequestQuote-102" transform="translate(179.2109375, 295.25)"><rect class="outer title-state" x="-166.8984375" y="-49.75" width="333.796875" height="99.5"></rect><line class="divider" x1="-166.8984375" x2="166.8984375" y1="-18.25" y2="-18.25"></line><g class="label" transform="translate(-159.3984375, -46.75)"><foreignObject width="99.8125" height="24" transform="translate( 109.4921875, 0)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">RequestQuote</span></div></foreignObject><foreignObject width="318.796875" height="48" transform="translate( 0, 36.5)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">type = Callback State<br/>Callback event = aggregatedQuotesResponse</span></div></foreignObject></g></g><g class="node statediagram-state" id="state-FetchQuotes-103" transform="translate(179.2109375, 456.75)"><rect class="outer title-state" x="-98.65625" y="-61.75" width="197.3125" height="123.5"></rect><line class="divider" x1="-98.65625" x2="98.65625" y1="-30.25" y2="-30.25"></line><g class="label" transform="translate(-91.15625, -58.75)"><foreignObject width="89.828125" height="24" transform="translate( 46.2421875, 0)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">FetchQuotes</span></div></foreignObject><foreignObject width="182.3125" height="72" transform="translate( 0, 36.5)"><div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;"><span class="nodeLabel">type = Operation State<br/>Action mode = sequential<br/>Num. of actions = 1</span></div></foreignObject></g></g><g class="node default" id="state-root_end-103" transform="translate(179.2109375, 599.5)"><circle class="state-start" r="7" width="14" height="14"></circle><circle class="state-end" r="5" width="10" height="10"></circle></g></g></g></g></g></svg>
+<svg id="mermaid-1657891780974" width="100%" xmlns="http://www.w3.org/2000/svg" class="statediagram" height="614.5">
+  <g id="viewport-20220715132940995" class="svg-pan-zoom_viewport" transform="matrix(1.000813669650122,0,0,1.000813669650122,134.64324399918635,0)" style="transform: matrix(1.00081, 0, 0, 1.00081, 134.643, 0);">
+    <style>#mermaid-1657891780974 {font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-1657891780974 .error-icon{fill:#552222;}#mermaid-1657891780974 .error-text{fill:#552222;stroke:#552222;}#mermaid-1657891780974 .edge-thickness-normal{stroke-width:2px;}#mermaid-1657891780974 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1657891780974 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1657891780974 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1657891780974 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1657891780974 .marker{fill:#333333;stroke:#333333;}#mermaid-1657891780974 .marker.cross{stroke:#333333;}#mermaid-1657891780974 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1657891780974 defs #statediagram-barbEnd{fill:#333333;stroke:#333333;}#mermaid-1657891780974 g.stateGroup text{fill:#9370DB;stroke:none;font-size:10px;}#mermaid-1657891780974 g.stateGroup text{fill:#333;stroke:none;font-size:10px;}#mermaid-1657891780974 g.stateGroup .state-title{font-weight:bolder;fill:#131300;}#mermaid-1657891780974 g.stateGroup rect{fill:#ECECFF;stroke:#9370DB;}#mermaid-1657891780974 g.stateGroup line{stroke:#333333;stroke-width:1;}#mermaid-1657891780974 .transition{stroke:#333333;stroke-width:1;fill:none;}#mermaid-1657891780974 .stateGroup .composit{fill:white;border-bottom:1px;}#mermaid-1657891780974 .stateGroup .alt-composit{fill:#e0e0e0;border-bottom:1px;}#mermaid-1657891780974 .state-note{stroke:#aaaa33;fill:#fff5ad;}#mermaid-1657891780974 .state-note text{fill:black;stroke:none;font-size:10px;}#mermaid-1657891780974 .stateLabel .box{stroke:none;stroke-width:0;fill:#ECECFF;opacity:0.5;}#mermaid-1657891780974 .edgeLabel .label rect{fill:#ECECFF;opacity:0.5;}#mermaid-1657891780974 .edgeLabel .label text{fill:#333;}#mermaid-1657891780974 .label div .edgeLabel{color:#333;}#mermaid-1657891780974 .stateLabel text{fill:#131300;font-size:10px;font-weight:bold;}#mermaid-1657891780974 .node circle.state-start{fill:#333333;stroke:#333333;}#mermaid-1657891780974 .node .fork-join{fill:#333333;stroke:#333333;}#mermaid-1657891780974 .node circle.state-end{fill:#9370DB;stroke:white;stroke-width:1.5;}#mermaid-1657891780974 .end-state-inner{fill:white;stroke-width:1.5;}#mermaid-1657891780974 .node rect{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657891780974 .node polygon{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657891780974 #statediagram-barbEnd{fill:#333333;}#mermaid-1657891780974 .statediagram-cluster rect{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-1657891780974 .cluster-label,#mermaid-1657891780974 .nodeLabel{color:#131300;}#mermaid-1657891780974 .statediagram-cluster rect.outer{rx:5px;ry:5px;}#mermaid-1657891780974 .statediagram-state .divider{stroke:#9370DB;}#mermaid-1657891780974 .statediagram-state .title-state{rx:5px;ry:5px;}#mermaid-1657891780974 .statediagram-cluster.statediagram-cluster .inner{fill:white;}#mermaid-1657891780974 .statediagram-cluster.statediagram-cluster-alt .inner{fill:#f0f0f0;}#mermaid-1657891780974 .statediagram-cluster .inner{rx:0;ry:0;}#mermaid-1657891780974 .statediagram-state rect.basic{rx:5px;ry:5px;}#mermaid-1657891780974 .statediagram-state rect.divider{stroke-dasharray:10,10;fill:#f0f0f0;}#mermaid-1657891780974 .note-edge{stroke-dasharray:5;}#mermaid-1657891780974 .statediagram-note rect{fill:#fff5ad;stroke:#aaaa33;stroke-width:1px;rx:0;ry:0;}#mermaid-1657891780974 .statediagram-note rect{fill:#fff5ad;stroke:#aaaa33;stroke-width:1px;rx:0;ry:0;}#mermaid-1657891780974 .statediagram-note text{fill:black;}#mermaid-1657891780974 .statediagram-note .nodeLabel{color:black;}#mermaid-1657891780974 .statediagram .edgeLabel{color:red;}#mermaid-1657891780974 #dependencyStart,#mermaid-1657891780974 #dependencyEnd{fill:#333333;stroke:#333333;stroke-width:1;}#mermaid-1657891780974 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}
+    </style>
+    <g>
+      <defs>
+        <marker id="statediagram-barbEnd" refX="19" refY="7" markerWidth="20" markerHeight="14" markerUnits="strokeWidth" orient="auto">
+          <path d="M 19,7 L9,13 L14,7 L9,1 Z"></path>
+        </marker>
+        <style id="svg-pan-zoom-controls-styles" type="text/css">.svg-pan-zoom-control { cursor: pointer; fill: black; fill-opacity: 0.333; } .svg-pan-zoom-control:hover { fill-opacity: 0.8; } .svg-pan-zoom-control-background { fill: white; fill-opacity: 0.5; } .svg-pan-zoom-control-background { fill-opacity: 0.8; }</style>
+      </defs>
+      <g class="root">
+        <g class="clusters"></g>
+        <g class="edgePaths">
+          <path d="M179.2109375,22L179.2109375,26.166666666666668C179.2109375,30.333333333333332,179.2109375,38.666666666666664,179.2109375,47C179.2109375,55.333333333333336,179.2109375,63.666666666666664,179.2109375,67.83333333333333L179.2109375,72" id="edge16" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path>
+          <path d="M179.2109375,195.5L179.2109375,199.66666666666666C179.2109375,203.83333333333334,179.2109375,212.16666666666666,179.2109375,220.5C179.2109375,228.83333333333334,179.2109375,237.16666666666666,179.2109375,241.33333333333334L179.2109375,245.5" id="edge17" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path>
+          <path d="M179.2109375,345L179.2109375,349.1666666666667C179.2109375,353.3333333333333,179.2109375,361.6666666666667,179.2109375,370C179.2109375,378.3333333333333,179.2109375,386.6666666666667,179.2109375,390.8333333333333L179.2109375,395" id="edge18" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path>
+          <path d="M179.2109375,518.5L179.2109375,524.6666666666666C179.2109375,530.8333333333334,179.2109375,543.1666666666666,179.2109375,555.5C179.2109375,567.8333333333334,179.2109375,580.1666666666666,179.2109375,586.3333333333334L179.2109375,592.5" id="edge19" class=" edge-thickness-normal transition" style="fill:none" marker-end="url(#statediagram-barbEnd)"></path>
+        </g>
+        <g class="edgeLabels">
+          <g class="edgeLabel">
+            <g class="label" transform="translate(0, 0)">
+              <rect rx="0" ry="0" width="0" height="0"></rect>
+              <foreignObject width="0" height="0">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="edgeLabel"></span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="edgeLabel">
+            <g class="label" transform="translate(0, 0)">
+              <rect rx="0" ry="0" width="0" height="0"></rect>
+              <foreignObject width="0" height="0">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="edgeLabel"></span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="edgeLabel">
+            <g class="label" transform="translate(0, 0)">
+              <rect rx="0" ry="0" width="0" height="0"></rect>
+              <foreignObject width="0" height="0">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="edgeLabel"></span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="edgeLabel" transform="translate(179.2109375, 555.5)">
+            <g class="label" transform="translate(-171.2109375, -12)">
+              <rect rx="0" ry="0" width="342.421875" height="24"></rect>
+              <foreignObject width="342.421875" height="24">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="edgeLabel">Produced event = [loanBrokerRequestedQuotes]</span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+        </g>
+        <g class="nodes">
+          <g class="node statediagram-state" id="state-GetCreditScore-17" transform="translate(179.2109375, 133.75)">
+            <rect class="outer title-state" x="-98.65625" y="-61.75" width="197.3125" height="123.5"></rect>
+            <line class="divider" x1="-98.65625" x2="98.65625" y1="-30.25" y2="-30.25"></line>
+            <g class="label" transform="translate(-91.15625, -58.75)">
+              <foreignObject width="109.375" height="24" transform="translate( 36.46875, 0)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">GetCreditScore</span>
+                </div>
+              </foreignObject>
+              <foreignObject width="182.3125" height="72" transform="translate( 0, 36.5)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">type = Operation State<br/>Action mode = sequential<br/>Num. of actions = 1
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="node default" id="state-root_start-16" transform="translate(179.2109375, 15)">
+            <circle class="state-start" r="7" width="14" height="14"></circle>
+          </g>
+          <g class="node statediagram-state" id="state-RequestQuote-18" transform="translate(179.2109375, 295.25)">
+            <rect class="outer title-state" x="-166.8984375" y="-49.75" width="333.796875" height="99.5"></rect>
+            <line class="divider" x1="-166.8984375" x2="166.8984375" y1="-18.25" y2="-18.25"></line>
+            <g class="label" transform="translate(-159.3984375, -46.75)">
+              <foreignObject width="99.8125" height="24" transform="translate( 109.4921875, 0)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">RequestQuote</span>
+                </div>
+              </foreignObject>
+              <foreignObject width="318.796875" height="48" transform="translate( 0, 36.5)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">type = Callback State<br/>Callback event = aggregatedQuotesResponse
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="node statediagram-state" id="state-FetchQuotes-19" transform="translate(179.2109375, 456.75)">
+            <rect class="outer title-state" x="-98.65625" y="-61.75" width="197.3125" height="123.5"></rect>
+            <line class="divider" x1="-98.65625" x2="98.65625" y1="-30.25" y2="-30.25"></line>
+            <g class="label" transform="translate(-91.15625, -58.75)">
+              <foreignObject width="89.828125" height="24" transform="translate( 46.2421875, 0)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">FetchQuotes</span>
+                </div>
+              </foreignObject>
+              <foreignObject width="182.3125" height="72" transform="translate( 0, 36.5)">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                  <span class="nodeLabel">type = Operation State<br/>Action mode = sequential<br/>Num. of actions = 1
+                  </span>
+                </div>
+              </foreignObject>
+            </g>
+          </g>
+          <g class="node default" id="state-root_end-19" transform="translate(179.2109375, 599.5)">
+            <circle class="state-start" r="7" width="14" height="14"></circle>
+            <circle class="state-end" r="5" width="10" height="10"></circle>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

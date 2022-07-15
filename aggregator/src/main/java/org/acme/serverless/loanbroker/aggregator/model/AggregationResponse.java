@@ -28,20 +28,20 @@ public class AggregationResponse implements Serializable {
         return completitionDate;
     }
 
-    public String getKogitoProcessInstanceId() {
-        return kogitoProcessInstanceId;
-    }
-
-    public int getQuoteCount() {
-        return quoteCount;
-    }
-
     public void setCompletitionDate(LocalDateTime completitionDate) {
         this.completitionDate = completitionDate;
     }
 
+    public String getKogitoProcessInstanceId() {
+        return kogitoProcessInstanceId;
+    }
+
     public void setKogitoProcessInstanceId(String kogitoProcessInstanceId) {
         this.kogitoProcessInstanceId = kogitoProcessInstanceId;
+    }
+
+    public int getQuoteCount() {
+        return quoteCount;
     }
 
     public void setQuoteCount(int quoteCount) {
@@ -60,25 +60,33 @@ public class AggregationResponse implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         AggregationResponse other = (AggregationResponse) obj;
         if (completitionDate == null) {
-            if (other.completitionDate != null)
+            if (other.completitionDate != null) {
                 return false;
-        } else if (!completitionDate.equals(other.completitionDate))
+            }
+        } else if (!completitionDate.equals(other.completitionDate)) {
             return false;
+        }
         if (kogitoProcessInstanceId == null) {
-            if (other.kogitoProcessInstanceId != null)
+            if (other.kogitoProcessInstanceId != null) {
                 return false;
-        } else if (!kogitoProcessInstanceId.equals(other.kogitoProcessInstanceId))
+            }
+        } else if (!kogitoProcessInstanceId.equals(other.kogitoProcessInstanceId)) {
             return false;
-        if (quoteCount != other.quoteCount)
+        }
+        if (quoteCount != other.quoteCount) {
             return false;
+        }
         return true;
     }
 

@@ -42,20 +42,26 @@ public class BankQuote implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         BankQuote other = (BankQuote) obj;
         if (bankId == null) {
-            if (other.bankId != null)
+            if (other.bankId != null) {
                 return false;
-        } else if (!bankId.equals(other.bankId))
+            }
+        } else if (!bankId.equals(other.bankId)) {
             return false;
-        if (Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate))
+        }
+        if (Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate)) {
             return false;
+        }
         return true;
     }
 

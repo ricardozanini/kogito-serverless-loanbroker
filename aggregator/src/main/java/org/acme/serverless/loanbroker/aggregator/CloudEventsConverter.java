@@ -17,6 +17,8 @@ import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
 import io.cloudevents.core.data.PojoCloudEventData;
 
+import static org.acme.serverless.loanbroker.aggregator.IntegrationConstants.KOGITO_FLOW_ID_HEADER;
+
 @Singleton
 public class CloudEventsConverter extends TypeConverterSupport {
 
@@ -35,8 +37,8 @@ public class CloudEventsConverter extends TypeConverterSupport {
                     .withSource(URI.create("/kogito/serverless/loanbroker/aggregator"))
                     .withDataContentType(MediaType.APPLICATION_JSON)
                     .withData(PojoCloudEventData.wrap(value, mapper::writeValueAsBytes))
-                    .withExtension(IntegrationConstants.KOGITO_FLOW_ID_HEADER,
-                            exchange.getIn().getHeader(IntegrationConstants.KOGITO_FLOW_ID_HEADER).toString())
+                    .withExtension(KOGITO_FLOW_ID_HEADER,
+                            exchange.getIn().getHeader(KOGITO_FLOW_ID_HEADER).toString())
                     .build();
             return (T) event;
         }

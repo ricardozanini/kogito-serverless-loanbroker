@@ -1,9 +1,5 @@
 package org.acme.serverless.loanbroker.flow;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
-
 import java.util.Collections;
 import java.util.Map;
 
@@ -13,6 +9,10 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager;
+
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
 public class CreditBureauMock implements QuarkusTestResourceLifecycleManager {
 
@@ -42,7 +42,7 @@ public class CreditBureauMock implements QuarkusTestResourceLifecycleManager {
 
     @Override
     public void inject(Object testInstance) {
-        ((LoanBrokerFlowIT) testInstance).creditBureauServer = wireMockServer;
+        ((LoanBrokerFlowTest) testInstance).creditBureauServer = wireMockServer;
     }
 
 }

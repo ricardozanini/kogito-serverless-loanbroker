@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import org.acme.serverless.loanbroker.aggregator.QuotesRepositoryProcessor;
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
@@ -35,7 +36,7 @@ public class QuotesResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @APIResponse(responseCode = "200", description = "success", content = {
-            @Content(schema = @Schema(allOf = BankQuote.class))
+            @Content(schema = @Schema(implementation = BankQuote.class, type = SchemaType.ARRAY))
     })
     public Response fetchQuotesByInstance(@PathParam("id") final String instanceId) {
         final List<BankQuote> quotes = quotesRepository.fetchQuotesByInstanceId(instanceId);

@@ -27,7 +27,7 @@ paths:
             application/json; charset=utf8:
               schema:
                 $ref: '#/components/schemas/CreditBureauResponse'
-              examples: {}
+              examples: { }
       servers:
         - url: http://localhost:8080
       tags:
