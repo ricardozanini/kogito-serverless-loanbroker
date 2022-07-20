@@ -3,7 +3,7 @@ name: credit-bureau
 namespace: ""
 runtime: node
 registry: ""
-image: quay.io/ricardozanini/credit-bureau:latest
+image: dev.local/credit-bureau
 imageDigest: ""
 build: local
 git: {}
