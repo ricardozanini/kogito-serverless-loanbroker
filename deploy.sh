@@ -16,12 +16,20 @@
 # build credit bureau
 # no need of any additional env variable or setup
 cd credit-bureau
-kn func build --image dev.local/credit-bureau
-docker run --rm -it -p 8181:8080 dev.local/credit-bureau
+kn func build --image dev.local/loanbroker-credit-bureau
+docker run --rm -it -p 8181:8080 dev.local/loanbroker-credit-bureau
 
 # build the banks
 cd banks
-kn func build --image dev.local/bank
-docker run --rm -it -p 8484:8080 --env-file=.env dev.local/bank
+kn func build --image dev.local/loanbroker-bank
+docker run --rm -it -p 8484:8080 --env-file=.env dev.local/loanbroker-bank
 
+# build the aggregator
+cd aggregator
+mvn clean install -DskipTests
+docker run --rm -it -p 8181:8080 -e K_SINK=http://localhost:8080 dev.local/loanbroker-aggregator
 
+# build the flow
+cd loanbroker-flow
+mvn clean install -DskipTests
+docker run --rm -it -p 8080:8080 -e K_SINK=http://localhost:8383 dev.local/loanbroker-aggregator

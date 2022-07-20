@@ -35,7 +35,7 @@ const handle = async (context, event) => {
       type: eventType,
       data: response,
       extensions: { kogitoprocrefid: requestId }
-    }));;
+    }));
   }
 }
 
