@@ -9,34 +9,105 @@
 #   - bank1: 8484 (we will have only one bank since we can't broadcast the message locally)
 # the connectivity between the images works like this:
 #  flow -> credit-bureau -> flow -> bank1 -> aggregator -> flow -> aggregator -> flow -> ui
-# start the docker-compose with the built images
 
 # every image must name ko.local/loanbroker-<servicename>
 
 # build the flow
-cd loanbroker-flow
-mvn clean install -DskipTests
-docker run --rm -it -p 8080:8080 -e K_SINK=http://localhost:8383 dev.local/loanbroker-aggregator
+# cd loanbroker-flow
+# mvn clean install -DskipTests
+# docker run --rm -it -p 8080:8080 -e K_SINK=http://localhost:8383 dev.local/loanbroker-aggregator
 
 # build credit bureau
 # no need of any additional env variable or setup
-cd credit-bureau
-kn func build --image dev.local/loanbroker-credit-bureau
-docker run --rm -it -p 8181:8080 dev.local/loanbroker-credit-bureau
+# cd credit-bureau
+# kn func build --image dev.local/loanbroker-credit-bureau
+# docker run --rm -it -p 8181:8080 dev.local/loanbroker-credit-bureau
 
 # build the aggregator
-cd aggregator
-mvn clean install -DskipTests
-docker run --rm -it -p 8282:8080 -e K_SINK=http://localhost:8080 dev.local/loanbroker-aggregator
+# cd aggregator
+# mvn clean install -DskipTests
+# docker run --rm -it -p 8282:8080 -e K_SINK=http://localhost:8080 dev.local/loanbroker-aggregator
 
 # build the UI
-cd loanbroker-ui
-mvn clean install -DskipTests
-docker run --rm -it -p 8383:8080 dev.local/loanbroker-ui
+# cd loanbroker-ui
+# mvn clean install -DskipTests
+# docker run --rm -it -p 8383:8080 dev.local/loanbroker-ui
 
 # build the banks
-cd banks
-kn func build --image dev.local/loanbroker-bank
-docker run --rm -it -p 8484:8080 --env-file=bank1.env dev.local/loanbroker-bank
-docker run --rm -it -p 8585:8080 --env-file=bank2.env dev.local/loanbroker-bank
-docker run --rm -it -p 8686:8080 --env-file=bank3.env dev.local/loanbroker-bank
+# cd banks
+# kn func build --image dev.local/loanbroker-bank
+# docker run --rm -it -p 8484:8080 --env-file=bank1.env dev.local/loanbroker-bank
+# docker run --rm -it -p 8585:8080 --env-file=bank2.env dev.local/loanbroker-bank
+# docker run --rm -it -p 8686:8080 --env-file=bank3.env dev.local/loanbroker-bank
+
+SKIP_BUILD=$1
+DEPLOY_LOG=deploy.log
+# remember to change in kubernetes.yaml
+NAMESPACE=loanbroker-example
+
+print_build_header() {
+    PROJ=$1
+    echo -e "*********** IMAGE BUILD LOG $PROJ ***********\n" >> ../$DEPLOY_LOG
+    echo "Building image for project $PROJ"
+}
+
+print_build_footer() {
+    PROJ=$1
+    RETURN_CODE=$2
+    if [ $RETURN_CODE -gt 0 ]
+    then 
+        echo "Image build for $PROJ failed" >&2
+        exit 1
+    fi
+    echo -e "\n" >> ../$DEPLOY_LOG
+}
+
+build_maven_image() {
+    PROJ=$1
+
+    cd $PROJ
+    print_build_header $PROJ
+    mvn -B clean install -Dquarkus.kubernetes.namespace=$NAMESPACE -DskipTests >> ../$DEPLOY_LOG
+    print_build_footer $PROJ $?
+    cd - >> /dev/null
+}
+
+build_kn_image() {
+    PROJ=$1
+    IMAGE_NAME=$2
+
+    print_build_header $PROJ
+    kn func build -v -n $NAMESPACE --path $PROJ --image $IMAGE_NAME >> ../$DEPLOY_LOG
+    print_build_footer $PROJ $?
+}
+
+apply_default_objects() {
+    echo "*********** CREATING DEFAULT k8s OBJECTS ***********\n" >> ../$DEPLOY_LOG
+    echo "Creating k8s objects"
+    kubectl apply -f kubernetes.yaml >> $DEPLOY_LOG
+    if [ $RETURN_CODE -gt 0 ]
+    then 
+        echo "Failed to create default objects" >&2
+        exit 1
+    fi
+    echo -e "\n" >> $DEPLOY_LOG
+}
+
+echo "Setting Docker Env to Minikube"
+eval $(minikube -p minikube docker-env --profile knative)
+if [ $? -gt 0 ]
+then 
+    echo "Failed to set docker-env to minikube" >&2
+    exit 1
+fi
+
+if [ "$SKIP_BUILD" != true ]
+then 
+    rm -rf $DEPLOY_LOG
+    build_maven_image "loanbroker-ui"
+    build_maven_image "loanbroker-flow"
+    build_maven_image "aggregator"
+    build_kn_image "credit-bureau" "dev.local/loanbroker-credit-bureau"
+    build_kn_image "banks" "dev.local/loanbroker-bank"
+fi
+

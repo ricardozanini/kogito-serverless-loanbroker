@@ -57,6 +57,19 @@
       <artifactId>quarkus-resteasy-qute</artifactId>
     </dependency>
     <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-kubernetes</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-webjars-locator</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>io.cloudevents</groupId>
       <artifactId>cloudevents-http-restful-ws</artifactId>
       <version>${version.io.cloudevents}</version>
@@ -66,10 +79,7 @@
       <artifactId>cloudevents-json-jackson</artifactId>
       <version>${version.io.cloudevents}</version>
     </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-webjars-locator</artifactId>
-    </dependency>
+
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>bootstrap</artifactId>

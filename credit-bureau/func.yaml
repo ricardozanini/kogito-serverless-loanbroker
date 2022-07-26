@@ -3,7 +3,7 @@ name: credit-bureau
 namespace: ""
 runtime: node
 registry: ""
-image: dev.local/credit-bureau
+image: dev.local/loanbroker-credit-bureau
 imageDigest: ""
 build: local
 git: {}
