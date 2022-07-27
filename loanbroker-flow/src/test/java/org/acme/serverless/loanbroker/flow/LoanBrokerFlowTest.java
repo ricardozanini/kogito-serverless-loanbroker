@@ -68,8 +68,9 @@ public class LoanBrokerFlowTest {
                 .with().pollInterval(1, SECONDS)
                 .untilAsserted(
                         () -> sinkServer.verify(1,
-                                postRequestedFor(urlEqualTo("/")).withRequestBody(
-                                        containing("500000"))));
+                                postRequestedFor(urlEqualTo("/"))
+                                        .withHeader("Content-type", containing("cloudevents"))
+                                        .withRequestBody(containing("500000"))));
 
         // The workflow should wait for the aggregator CE reply to resume the process.
         // Let's push it

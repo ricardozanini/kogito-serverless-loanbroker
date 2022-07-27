@@ -23,11 +23,24 @@ const handle = async (context, event) => {
   console.log("event");
   console.log(JSON.stringify(event, null, 2));
 
+  if (context.cloudevent.data === 'undefined' || typeof context.cloudevent.data !== 'object') {
+    console.warn("Received CloudEvent without data, aborting.");
+    return { statusCode: 400, statusMessage: 'Invalid CloudEvent' };
+  }
+
   const requestId = context.cloudevent.kogitoprocinstanceid;
   const bankId = process.env.BANK_ID;
-  const eventType = "kogito.serverless.loanbroker.bank.offer"
+  const eventType = "kogito.serverless.loanbroker.bank.offer";
 
-  const response = bankQuote(context.cloudevent.data, bankId);
+  var data = JSON.parse(JSON.stringify(context.cloudevent.data));
+
+  if (data && data.type === "Buffer") {
+    data = JSON.parse(new TextDecoder().decode(new Uint8Array(data.data)));
+  }
+
+  console.log("Data is: " + JSON.stringify(data));
+
+  const response = bankQuote(data, bankId);
 
   if (response != null) {
     return HTTP.binary(new CloudEvent({

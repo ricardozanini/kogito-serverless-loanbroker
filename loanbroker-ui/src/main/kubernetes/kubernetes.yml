@@ -10,7 +10,7 @@ spec:
       type: kogito.serverless.workflow.aggregated.quotes
   subscriber:
     ref:
-      apiVersion: apps/v1
-      kind: Deployment
+      apiVersion: v1
+      kind: Service
       name: loanbroker-ui
 

@@ -76,18 +76,22 @@ build_kn_image() {
     PROJ=$1
     IMAGE_NAME=$2
 
+    cd $PROJ
     print_build_header $PROJ
-    kn func build -v -n $NAMESPACE --path $PROJ --image $IMAGE_NAME >> ../$DEPLOY_LOG
+    kn func build -v -n $NAMESPACE --image $IMAGE_NAME >> ../$DEPLOY_LOG
     print_build_footer $PROJ $?
+    cd - >> /dev/null
 }
 
-apply_default_objects() {
-    echo "*********** CREATING DEFAULT k8s OBJECTS ***********\n" >> ../$DEPLOY_LOG
-    echo "Creating k8s objects"
-    kubectl apply -f kubernetes.yaml >> $DEPLOY_LOG
+apply_kube() {
+    YAML_FILE=$1
+    NAME=$2
+    echo "*********** CREATING $NAME k8s OBJECTS ***********\n" >> ../$DEPLOY_LOG
+    echo "Creating k8s $NAME"
+    kubectl apply -n $NAMESPACE -f $YAML_FILE >> $DEPLOY_LOG
     if [ $RETURN_CODE -gt 0 ]
     then 
-        echo "Failed to create default objects" >&2
+        echo "Failed to create $NAME objects" >&2
         exit 1
     fi
     echo -e "\n" >> $DEPLOY_LOG
@@ -111,3 +115,9 @@ then
     build_kn_image "banks" "dev.local/loanbroker-bank"
 fi
 
+apply_kube "kubernetes.yaml" "Banks, Credit Bureau and Namespace"
+apply_kube "loanbroker-flow/target/kubernetes/kogito.yml" "Flow Kogito Binding"
+apply_kube "loanbroker-flow/target/kubernetes/knative.yml" "Flow Service"
+apply_kube "aggregator/target/kubernetes/kubernetes.yml" "Aggregator Service"
+# TODO: get the flow ksvc address to set to the yaml file before applying
+apply_kube "loanbroker-ui/target/kubernetes/kubernetes.yml" "User Interface"

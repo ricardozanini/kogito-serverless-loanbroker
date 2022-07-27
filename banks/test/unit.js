@@ -40,6 +40,36 @@ test('Unit: handles a valid event', async t => {
   t.end();
 });
 
+test('Unit: handles a valid event as byte array', async t => {
+  t.teardown(() => {
+    delete process.env.BANK_ID;
+    delete process.env.MAX_LOAN_AMOUNT;
+    delete process.env.MIN_CREDIT_SCORE;
+    delete process.env.BASE_RATE;
+  });
+
+  process.env.BANK_ID = "BankUnitTest";
+  process.env.MAX_LOAN_AMOUNT = "500000";
+  process.env.MIN_CREDIT_SCORE = "300";
+  process.env.BASE_RATE = "3";
+
+  t.plan(4);
+
+  const cloudEventBinary = cloudevent;
+  const dataArray = new Uint8Array(new TextEncoder().encode(JSON.stringify(data)).buffer);
+  cloudEventBinary.data = {
+    type: "Buffer",
+    data: [...dataArray]
+  };
+
+  const result = await func(new MockContext(cloudEventBinary), dataArray);
+  t.ok(result);
+  t.equal(JSON.parse(result.body).bankId, "BankUnitTest");
+  t.equal(result.headers['ce-type'], 'kogito.serverless.loanbroker.bank.offer');
+  t.equal(result.headers['ce-source'], '/kogito/serverless/loanbroker/bank/BankUnitTest');
+  t.end();
+});
+
 class MockContext {
   cloudevent;
 

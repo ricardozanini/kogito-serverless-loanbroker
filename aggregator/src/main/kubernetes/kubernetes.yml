@@ -27,6 +27,6 @@ spec:
       type: kogito.serverless.loanbroker.bank.offer
   subscriber:
     ref:
-      apiVersion: apps/v1
-      kind: Deployment
+      apiVersion: v1
+      kind: Service
       name: loanbroker-aggregator
