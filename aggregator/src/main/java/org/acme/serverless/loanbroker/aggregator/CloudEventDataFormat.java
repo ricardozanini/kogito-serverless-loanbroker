@@ -38,7 +38,6 @@ public class CloudEventDataFormat implements DataFormat {
             final byte[] serialized = EventFormatProvider.getInstance()
                     .resolveFormat(JsonFormat.CONTENT_TYPE)
                     .serialize((CloudEvent) graph);
-            stream = new ByteArrayOutputStream(serialized.length);
             stream.write(serialized);
         } else if (graph != null) {
             throw new IllegalArgumentException("Object " + graph + " is not a CloudEvent instance");

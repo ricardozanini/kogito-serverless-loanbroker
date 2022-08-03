@@ -47,7 +47,7 @@ const handle = async (context, event) => {
       source: "/kogito/serverless/loanbroker/bank/" + bankId,
       type: eventType,
       data: response,
-      extensions: { kogitoprocrefid: requestId }
+      kogitoprocrefid: requestId
     }));
   }
 }

@@ -203,3 +203,31 @@ spec:
       apiVersion: serving.knative.dev/v1
       kind: Service
       name: loanbroker-bank3
+---
+# use for debugging
+# simple knative application to display the routed messages
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: event-display
+  namespace: loanbroker-example
+spec:
+  template:
+    spec:
+      containers:
+        -  # This corresponds to
+          # https://github.com/knative/eventing-contrib/tree/main/cmd/event_display
+          image: gcr.io/knative-releases/knative.dev/eventing-contrib/cmd/event_display@sha256:a214514d6ba674d7393ec8448dd272472b2956207acb3f83152d3071f0ab1911
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: trigger-eventdisplay
+  namespace: loanbroker-example
+spec:
+  broker: default
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display

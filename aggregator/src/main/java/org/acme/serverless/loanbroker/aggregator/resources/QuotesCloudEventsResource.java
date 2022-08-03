@@ -12,6 +12,8 @@ import org.acme.serverless.loanbroker.aggregator.IntegrationConstants;
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,6 +23,8 @@ import io.cloudevents.jackson.PojoCloudEventDataMapper;
 @Path("/")
 @ApplicationScoped
 public class QuotesCloudEventsResource {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(QuotesCloudEventsResource.class);
 
     /**
      * Produced by Camel
@@ -34,10 +38,13 @@ public class QuotesCloudEventsResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response consumeQuoteEvent(CloudEvent cloudEvent) {
+        LOGGER.info("Aggregator just received an event \n {}", cloudEvent);
         if (cloudEvent == null || cloudEvent.getData() == null) {
+            LOGGER.warn("Bad Event Received, no data. Ignoring. See: \n {}", cloudEvent);
             return Response.status(400).entity(ResponseError.NO_DATA_EVENT_ERROR).build();
         }
         if (cloudEvent.getExtension(IntegrationConstants.KOGITO_FLOW_ID_HEADER) == null) {
+            LOGGER.warn("Bad Event Received, no Kogito header. Ignoring. See: \n {}", cloudEvent);
             return Response.status(400).entity(ResponseError.NO_DATA_EVENT_ERROR).build();
         }
         aggregatorProducer.sendBodyAndHeader(

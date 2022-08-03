@@ -121,3 +121,5 @@ apply_kube "loanbroker-flow/target/kubernetes/knative.yml" "Flow Service"
 apply_kube "aggregator/target/kubernetes/kubernetes.yml" "Aggregator Service"
 # TODO: get the flow ksvc address to set to the yaml file before applying
 apply_kube "loanbroker-ui/target/kubernetes/kubernetes.yml" "User Interface"
+# TODO: expose UI
+# kubectl expose deployment loanbroker-ui --name=loanbroker-ui-external --type=LoadBalancer --port=8080

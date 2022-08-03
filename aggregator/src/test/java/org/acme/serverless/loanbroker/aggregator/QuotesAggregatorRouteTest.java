@@ -7,12 +7,14 @@ import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
 
 import org.acme.serverless.loanbroker.aggregator.model.BankQuote;
+import org.apache.camel.Exchange;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.WireMockServer;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.builder.CloudEventBuilder;
@@ -23,6 +25,10 @@ import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.containing;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import static org.acme.serverless.loanbroker.aggregator.IntegrationConstants.KOGITO_FLOW_ID_HEADER;
 import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
@@ -40,6 +46,9 @@ public class QuotesAggregatorRouteTest {
     @Inject
     QuotesRepositoryProcessor quotesRepository;
 
+    @InjectWithSinkMock
+    WireMockServer wireMockServer;
+
     @AfterEach
     void cleanUpRepository() {
         if (quotesRepository != null) {
@@ -56,6 +65,8 @@ public class QuotesAggregatorRouteTest {
                 .atMost(10, TimeUnit.SECONDS)
                 .with().pollInterval(3, TimeUnit.SECONDS)
                 .untilAsserted(() -> this.getQuotesAndAssert(1, "123"));
+
+        assertAggregatorReply(1);
     }
 
     /**
@@ -73,6 +84,8 @@ public class QuotesAggregatorRouteTest {
                 .atMost(10, TimeUnit.SECONDS)
                 .with().pollInterval(3, TimeUnit.SECONDS)
                 .untilAsserted(() -> this.getQuotesAndAssert(2, "123"));
+
+        assertAggregatorReply(1);
     }
 
     @Test
@@ -91,6 +104,7 @@ public class QuotesAggregatorRouteTest {
                 .with().pollInterval(3, TimeUnit.SECONDS)
                 .untilAsserted(() -> this.getQuotesAndAssert(1, "456"));
 
+        assertAggregatorReply(2);
     }
 
     private void postMessageAndExpectSuccess(final BankQuote bankQuote, final String workflowInstanceId) {
@@ -123,5 +137,12 @@ public class QuotesAggregatorRouteTest {
                 .statusCode(200)
                 .and()
                 .body("size()", Is.is(quotesCount));
+    }
+
+    private void assertAggregatorReply(final int count) {
+        wireMockServer.verify(count, postRequestedFor(urlEqualTo("/"))
+                .withHeader(Exchange.CONTENT_TYPE, equalTo("application/cloudevents+json"))
+                .withRequestBody(containing("quoteCount")));
+        wireMockServer.resetRequests();
     }
 }

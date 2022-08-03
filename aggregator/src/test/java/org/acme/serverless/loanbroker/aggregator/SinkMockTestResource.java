@@ -45,4 +45,9 @@ public class SinkMockTestResource implements QuarkusTestResourceLifecycleManager
             server.stop();
         }
     }
+
+    @Override
+    public void inject(TestInjector testInjector) {
+        testInjector.injectIntoFields(server, new TestInjector.AnnotatedAndMatchesType(InjectWithSinkMock.class, WireMockServer.class));
+    }
 }
