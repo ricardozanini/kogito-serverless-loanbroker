@@ -52,7 +52,7 @@ public class QuotesCloudEventsResource {
                 PojoCloudEventDataMapper.from(mapper, BankQuote.class).map(cloudEvent.getData()).getValue(),
                 IntegrationConstants.KOGITO_FLOW_ID_HEADER,
                 cloudEvent.getExtension(IntegrationConstants.KOGITO_FLOW_ID_HEADER).toString());
-        return Response.ok(cloudEvent.getId()).build();
+        return Response.ok().build();
     }
 
 }

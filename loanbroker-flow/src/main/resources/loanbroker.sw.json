@@ -79,6 +79,9 @@
             "arguments": {
               "id": "$WORKFLOW.instanceId"
             }
+          },
+          "actionDataFilter": {
+            "toStateData": "${ .quotes }"
           }
         }
       ],

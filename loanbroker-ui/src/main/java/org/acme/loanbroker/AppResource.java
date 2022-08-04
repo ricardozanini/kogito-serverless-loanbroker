@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.loanbroker;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;
@@ -44,8 +44,10 @@ public class AppResource {
         if (cloudEvent == null || cloudEvent.getData() == null) {
             return Response.status(400).entity("{ \"message\": \"CloudEvent without data\" }").build();
         }
-        // TODO: save the event internally, expose it via websockets
-        return Response.ok(cloudEvent.getId()).build();
+
+
+
+        return Response.ok().build();
     }
 
 }

@@ -104,7 +104,7 @@ public class LoanBrokerFlowTest {
                 .untilAsserted(
                         () -> sinkServer.verify(1,
                                 postRequestedFor(urlEqualTo("/")).withRequestBody(
-                                        containing("BankPawnshop"))));
+                                        containing("quotes"))));
     }
 
 }
