@@ -1,6 +1,5 @@
 package org.acme.serverless.loanbroker.aggregator;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 

@@ -1,3 +1,5 @@
+let connected = false;
+
 function refreshLoans() {
     $.getJSON("{workflowURL}/loanbroker", (subs) => {
         printLoansTable(subs);
@@ -36,6 +38,14 @@ function printLoanRow(loanTableBody, loan) {
         queryRow.append($(`<td style="width: 30%;">$\{loan.workflowdata.amount}</td>`));
         queryRow.append($(`<td style="width: 30%;">$\{loan.workflowdata.credit.score}</td>`));
         queryRow.append($(`<td style="width: 30%;">$\{loan.workflowdata.credit.history}</td>`));
+    }
+}
+
+function printQuoteRow(quote) {
+    const quoteTableBody = $('#completedQuotes > tbody');
+    if (quote.loanRequestId) {
+        const queryRow = $('<tr>').appendTo(quoteTableBody);
+        queryRow.append($(`<th scope="row" style="width: 30%;">$\{loan.loanRequestId}</th>`));
     }
 }
 
@@ -87,17 +97,30 @@ function newLoanRequest() {
             form.modal('hide');
             refreshLoans();
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             form.modal('hide');
             showError("An error was produced during the serverless workflow instance create attempt, please check that que loanbroker-flow application is running:\n" + xhr.responseText);
         }
     });
 }
 
-$(document).ready(function () {
-    //Initial queries loading
-    refreshLoans();
+function connectNewQuoteSocket() {
+    if (connected) {
+        return;
+    }
 
+    const socket = new WebSocket("ws://" + location.host + "/socket/quote/new");
+    socket.onopen = function () {
+        connected = true;
+        console.log("Connected to backend");
+    };
+    socket.onmessage = function (m) {
+        console.log("New quote: " + m.data);
+        printQuoteRow(JSON.parse(m.data));
+    }
+}
+
+$(document).ready(function () {
     //Initialize button listeners
     $('#refreshButton').click(function () {
         refreshLoans();
@@ -107,4 +130,8 @@ $(document).ready(function () {
         showLoanForm();
     });
 
+    //Initial queries loading
+    refreshLoans();
+    // listen to new quotes as we receive them
+    connectNewQuoteSocket();
 });

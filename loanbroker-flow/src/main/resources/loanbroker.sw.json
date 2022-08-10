@@ -1,5 +1,6 @@
 {
   "id": "loanbroker",
+  "name": "loanbroker",
   "specVersion": "0.8",
   "start": "GetCreditScore",
   "dataInputSchema": "loanbroker.schema.json",
