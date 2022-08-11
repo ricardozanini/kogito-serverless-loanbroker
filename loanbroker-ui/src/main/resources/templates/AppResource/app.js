@@ -45,7 +45,25 @@ function printQuoteRow(quote) {
     const quoteTableBody = $('#completedQuotes > tbody');
     if (quote.loanRequestId) {
         const queryRow = $('<tr>').appendTo(quoteTableBody);
-        queryRow.append($(`<th scope="row" style="width: 30%;">$\{loan.loanRequestId}</th>`));
+        queryRow.append($(`<th scope="row" style="width: 30%;">$\{quote.loanRequestId}</th>`));
+        queryRow.append($(`<td style="width: 30%;">$\{quote.credit.SSN}</td>`));
+        queryRow.append($(`<td style="width: 30%;">$\{quote.term}</td>`));
+        queryRow.append($(`<td style="width: 30%;">$\{quote.amount}</td>`));
+        queryRow.append($(`<td style="width: 30%;">$\{quote.credit.score}</td>`));
+        queryRow.append($(`<td style="width: 30%;">$\{quote.credit.history}</td>`));
+        if (quote.quotes) {
+            const quotesRowBody = $('<tr>').append('<td colspan="6" id="">')//.append('<table class="table mb-0">').append('<tbody>');
+            quotesRowBody.children(0).append('<table class="table mb-0">');
+            quotesRowBody.children(0).children(0).append('<thead><tr><th>Bank</th><th>Rate</th></tr></thead>');
+            quotesRowBody.children(0).children(0).append('<tbody id="quoteBody">');
+            for (const q of quote.quotes) {
+                const quotesRow = $('<tr>');
+                quotesRow.append($(`<td>$\{q.bankId}</td>`));
+                quotesRow.append($(`<td>$\{q.rate}</td>`));
+                quotesRowBody.find('#quoteBody').append(quotesRow);
+            }
+            quotesRowBody.appendTo(quoteTableBody);
+        }
     }
 }
 
