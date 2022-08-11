@@ -52,7 +52,7 @@ function printQuoteRow(quote) {
         queryRow.append($(`<td style="width: 30%;">$\{quote.credit.score}</td>`));
         queryRow.append($(`<td style="width: 30%;">$\{quote.credit.history}</td>`));
         if (quote.quotes) {
-            const quotesRowBody = $('<tr>').append('<td colspan="6" id="">')//.append('<table class="table mb-0">').append('<tbody>');
+            const quotesRowBody = $('<tr>').append('<td colspan="6" id="">')
             quotesRowBody.children(0).append('<table class="table mb-0">');
             quotesRowBody.children(0).children(0).append('<thead><tr><th>Bank</th><th>Rate</th></tr></thead>');
             quotesRowBody.children(0).children(0).append('<tbody id="quoteBody">');
