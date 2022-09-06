@@ -89,7 +89,8 @@ apply_kube() {
     echo "*********** CREATING $NAME k8s OBJECTS ***********\n" >> ../$DEPLOY_LOG
     echo "Creating k8s $NAME"
     kubectl apply -n $NAMESPACE -f $YAML_FILE >> $DEPLOY_LOG
-    if [ $RETURN_CODE -gt 0 ]
+    RETURN_CODE=$?
+    if [ "${RETURN_CODE}" -gt 0 ]
     then 
         echo "Failed to create $NAME objects" >&2
         exit 1
@@ -97,17 +98,34 @@ apply_kube() {
     echo -e "\n" >> $DEPLOY_LOG
 }
 
-echo "Setting Docker Env to Minikube"
-eval $(minikube -p minikube docker-env --profile knative)
-if [ $? -gt 0 ]
-then 
-    echo "Failed to set docker-env to minikube" >&2
-    exit 1
-fi
+add_flow_url_to_ui() {
+    echo "Getting Loan Broker URL"
+    LOAN_FLOW_URL=""
+    
+    while [ -z "${LOAN_FLOW_URL}" ]
+    do
+        LOAN_FLOW_URL=$(kn service describe loanbroker-flow  -o jsonpath --template="{.status.url}")
+        sleep 3
+    done
+    
+    echo "Loan Broker URL is ${LOAN_FLOW_URL}"
+    echo "Adding Flow URL to UI"
+
+    DEFAULT_URL="http://loanbroker-flow.loanbroker-example.svc.cluster.local"
+    sed -i .bak 's,'"${DEFAULT_URL}"','"${LOAN_FLOW_URL}"',g' loanbroker-ui/target/kubernetes/kubernetes.yml
+}
+
+rm -rf $DEPLOY_LOG
 
 if [ "$SKIP_BUILD" != true ]
 then 
-    rm -rf $DEPLOY_LOG
+    echo "Setting Docker Env to Minikube"
+    eval $(minikube -p minikube docker-env --profile knative)
+    if [ $? -gt 0 ]
+    then 
+        echo "Failed to set docker-env to minikube" >&2
+        exit 1
+    fi
     build_maven_image "loanbroker-ui"
     build_maven_image "loanbroker-flow"
     build_maven_image "aggregator"
@@ -119,7 +137,8 @@ apply_kube "kubernetes.yaml" "Banks, Credit Bureau and Namespace"
 apply_kube "loanbroker-flow/target/kubernetes/kogito.yml" "Flow Kogito Binding"
 apply_kube "loanbroker-flow/target/kubernetes/knative.yml" "Flow Service"
 apply_kube "aggregator/target/kubernetes/kubernetes.yml" "Aggregator Service"
-# TODO: get the flow ksvc address to set to the yaml file before applying
+# get the flow ksvc address to set to the yaml file before applying
+add_flow_url_to_ui
 apply_kube "loanbroker-ui/target/kubernetes/kubernetes.yml" "User Interface"
-# TODO: expose UI
-# kubectl expose deployment loanbroker-ui --name=loanbroker-ui-external --type=LoadBalancer --port=8080
+echo "Exposing UI at localhost:8080, please run 'minikube tunnel -p knative' in a separate terminal"
+kubectl expose deployment loanbroker-ui --name=loanbroker-ui-external --type=LoadBalancer --port=8080

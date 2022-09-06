@@ -23,13 +23,13 @@ public class QuotesRepository {
 
     public QuotesResponse add(final CloudEvent cloudEvent) {
         final QuotesResponse quotesResponse = PojoCloudEventDataMapper.from(mapper, QuotesResponse.class).map(cloudEvent.getData()).getValue();
-        final Object requestId = cloudEvent.getExtension("kogitoprocrefid");
+        final Object requestId = cloudEvent.getExtension("kogitoprocinstanceid");
         if (requestId != null) {
             quotesResponse.setLoanRequestId(requestId.toString());
             quotes.put(requestId.toString(), quotesResponse);
             return quotesResponse;
         }
-        throw new IllegalArgumentException("kogitoprocrefid not found in the quotes response for CE " + cloudEvent);
+        throw new IllegalArgumentException("kogitoprocinstanceid not found in the quotes response for CE " + cloudEvent);
     }
 
     public Optional<QuotesResponse> fetch(final String requestId) {

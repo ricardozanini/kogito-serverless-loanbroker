@@ -55,11 +55,11 @@ public class AppResourceTest {
 
         final CloudEvent ce = CloudEventBuilder.v1()
                 .withId("123456")
-                .withType("kogito.serverless.loanbroker.aggregated.quotes.response")
+                .withType("kogito.serverless.workflow.aggregated.quotes")
                 .withSource(URI.create("/kogito/serverless/loanbroker/aggregator"))
                 .withDataContentType(MediaType.APPLICATION_JSON)
                 .withData(PojoCloudEventData.wrap(sentQuotes, mapper::writeValueAsBytes))
-                .withExtension("kogitoprocrefid", "1234")
+                .withExtension("kogitoprocinstanceid", "1234")
                 .build();
 
         try (final Session session = ContainerProvider.getWebSocketContainer().connectToServer(Client.class, socketNewQuoteURI)) {
