@@ -141,4 +141,4 @@ apply_kube "aggregator/target/kubernetes/kubernetes.yml" "Aggregator Service"
 add_flow_url_to_ui
 apply_kube "loanbroker-ui/target/kubernetes/kubernetes.yml" "User Interface"
 echo "Exposing UI at localhost:8080, please run 'minikube tunnel -p knative' in a separate terminal"
-kubectl expose deployment loanbroker-ui --name=loanbroker-ui-external --type=LoadBalancer --port=8080
+kubectl expose deployment loanbroker-ui --name=loanbroker-ui-external --type=LoadBalancer --port=8080 -n ${NAMESPACE}
