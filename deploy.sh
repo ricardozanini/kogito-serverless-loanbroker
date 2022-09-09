@@ -104,7 +104,7 @@ add_flow_url_to_ui() {
     
     while [ -z "${LOAN_FLOW_URL}" ]
     do
-        LOAN_FLOW_URL=$(kn service describe loanbroker-flow  -o jsonpath --template="{.status.url}")
+        LOAN_FLOW_URL=$(kn service describe loanbroker-flow  -o jsonpath --template="{.status.url}" -n ${NAMESPACE})
         sleep 3
     done
     
