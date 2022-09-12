@@ -40,7 +40,7 @@ This is the original architecture view of the use case:
 
 This is the implementation:
 
-WIP
+![](implementation.png)
 
 The main orchestration flow we implemented with [Kogito Serverless Workflow](https://kiegroup.github.io/kogito-docs/serverlessworkflow/latest/) and [Knative Serving](https://knative.dev/docs/serving/), which is Red Hat's implementation of the [CNCF Serverless Workflow Specification](https://serverlessworkflow.io/).
 
