@@ -11,6 +11,12 @@ You can easily deploy this example on Minikube by using the provided `deploy.sh`
 2. Installed [Knative Quickstart](https://knative.dev/docs/getting-started/quickstart-install/) on your Minikube installation. It adds a new `knative` profile to your cluster, so bear in mind that every command on Minikube must be followed by `-p knative`.
 3. Installed JDK 11, Maven, NPM, and Docker in order to build all the parts of the example.
 
+Start the tunnel in a separate terminal:
+
+```shell
+minikube tunnel -p knative
+```
+
 Now just run `./deploy.sh`. It will build all the services, create the Kubernetes object, and push the images to your Minikube's internal registry.
 
 The UI will be exposed as a NodePort on `8080`. Access it using http://localhost:8080.
@@ -18,6 +24,11 @@ The UI will be exposed as a NodePort on `8080`. Access it using http://localhost
 For some reason, if you need to run the script again but would like to skip the build process, run it with `deploy.sh true`. It will try to deploy the application directly in the cluster.
 
 > It's likely to work on any Kubernetes cluster if you have the permissions to create namespaces. Otherwise, just change the `deploy.sh` script's `NAMESPACE` variable to install in another one.
+
+### Minimum Requirements
+
+- Minikube with at least 4 CPU cores
+- Minikube RAM of 12GB
 
 ## How it works
 
